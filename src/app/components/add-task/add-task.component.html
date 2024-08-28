@@ -1,27 +1,35 @@
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="text">Tarefa: </label>
-    <input
-      type="text"
-      name="text"
-      id="text"
-      class="form-control"
-      placeholder="Adicionar tarefa"
-      [(ngModel)]="task">
-  </div>
+@if(showForm) {
+  <app-button-form text="Fechar" color="red" (isFormShowing)="showAddForm(false)"></app-button-form>
 
-  <div class="mb-4">
-    <label for="category">Categoria: </label>
-    <select type="text" name="category" id="category" class="form-control" [(ngModel)]="category">
-      <option value="">Selecione uma categoria</option>
+  <form (ngSubmit)="onSubmit()" class="add-form">
+    <div>
+      <label for="text">Tarefa: </label>
+      <input
+        type="text"
+        name="text"
+        id="text"
+        class="form-control"
+        placeholder="Adicionar tarefa"
+        [(ngModel)]="task">
+    </div>
 
-      <option value="casa">Casa</option>
-      <option value="trabalho">Trabalho</option>
-      <option value="faculdade">Faculdade</option>
-      <option value="academia">Academia</option>
-      <option value="lazer">Lazer</option>
-    </select>
-  </div>
+    <div class="mb-4">
+      <label for="category">Categoria: </label>
+      <select type="text" name="category" id="category" class="form-control" [(ngModel)]="category">
+        <option value="">Selecione uma categoria</option>
 
-  <input type="submit" value="Salvar tarefa" class="btn btn-block mb-5">
-</form>
+        <option value="casa">Casa</option>
+        <option value="trabalho">Trabalho</option>
+        <option value="faculdade">Faculdade</option>
+        <option value="academia">Academia</option>
+        <option value="lazer">Lazer</option>
+      </select>
+    </div>
+
+    <input type="submit" value="Salvar tarefa" class="btn btn-block mb-5">
+  </form>
+} @else {
+  <app-button-form text="Expandir" color="green" (isFormShowing)="showAddForm(true)"></app-button-form>
+}
+
+
